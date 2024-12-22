@@ -2,8 +2,8 @@ local Players = game:GetService("Players")
 
 -- Importiere Modul-Scripts
 local PlayerDataHandler = require(script.Parent:WaitForChild("PlayerDataHandler"))
-local DefaultPlayerStats = require(script.Parent:WaitForChild("DefaultPlayerStats"))
-local CarUpgradeManager = require(script.Parent:WaitForChild("CarUpgradeManager"))
+local DefaultPlayerStats = require(script:WaitForChild("DefaultPlayerStats"))
+local CarUpgradeManager = require(script:WaitForChild("CarUpgradeManager"))
 
 -- Spieler-Join-Event
 Players.PlayerAdded:Connect(function(player)
