@@ -1,6 +1,7 @@
+-- ServerScriptService/Server/PlayerSpawnManager.lua
+
 local Players = game:GetService("Players")
 
--- Importiere Modul-Scripts
 local PlayerDataHandler = require(script.Parent:WaitForChild("PlayerDataHandler"))
 local DefaultPlayerStats = require(script.Parent:WaitForChild("DefaultPlayerStats"))
 local CarUpgradeManager = require(script.Parent:WaitForChild("CarUpgradeManager"))
@@ -9,21 +10,22 @@ local CarUpgradeManager = require(script.Parent:WaitForChild("CarUpgradeManager"
 Players.PlayerAdded:Connect(function(player)
     print(player.Name .. " hat die Welt betreten.")
 
-    -- Spieler-Daten laden oder initialisieren
+    -- 1) Spieler-Daten laden
     local playerData = PlayerDataHandler.LoadPlayerData(player)
     if not playerData then
-        -- Falls keine gespeicherten Daten vorhanden sind, Standardwerte setzen
+        -- Falls keine gespeicherten Daten vorhanden sind, Default-Werte generieren
         playerData = DefaultPlayerStats.GetDefaultStats()
     end
 
-    -- Spieler-Daten speichern (z. B. als Attribut oder in leaderstats)
+    -- 2) Daten anwenden (Attributes + leaderstats anlegen)
     PlayerDataHandler.ApplyPlayerData(player, playerData)
 
-    -- Spawn-Logik
+    -- 3) Sobald Character erstellt wird -> zum Startpunkt teleportieren
     player.CharacterAdded:Connect(function(character)
-        -- Spieler am Standard-Spawnpunkt spawnen
-        local spawnPoint = workspace.Startworld:FindFirstChild("StartSP")
+        local spawnPoint = workspace:WaitForChild("Startworld"):FindFirstChild("StartSP")
         if spawnPoint then
+            -- Nur sicherstellen, dass character.PrimaryPart gesetzt ist (meist HumanoidRootPart)
+            character:WaitForChild("HumanoidRootPart")
             character:SetPrimaryPartCFrame(spawnPoint.CFrame)
         end
     end)

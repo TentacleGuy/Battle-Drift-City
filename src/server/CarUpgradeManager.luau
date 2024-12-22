@@ -1,25 +1,22 @@
+-- ServerScriptService/Server/CarUpgradeManager.lua
+
 local CarUpgradeManager = {}
 
--- Verfügbare Upgrades
-CarUpgradeManager.Upgrades = {
-    Engine = {
-        { Level = 1, Price = 500, Effect = "Speed +10" },
-        { Level = 2, Price = 1000, Effect = "Speed +20" },
-        { Level = 3, Price = 2000, Effect = "Speed +30" },
-    },
-    Nitro = {
-        { Level = 1, Price = 300, Effect = "Boost Duration +2s" },
-        { Level = 2, Price = 600, Effect = "Boost Duration +4s" },
-    },
-    Tires = {
-        { Level = 1, Price = 200, Effect = "Grip +10%" },
-        { Level = 2, Price = 400, Effect = "Grip +20%" },
-    },
-}
+function CarUpgradeManager.Init()
+    print("CarUpgradeManager Init")
+    -- Falls du hier Startup-Logik hast, kannst du sie ausführen
+end
 
--- Funktion: Upgrade-Daten abrufen
-function CarUpgradeManager.GetUpgradesForType(upgradeType)
-    return CarUpgradeManager.Upgrades[upgradeType] or {}
+function CarUpgradeManager.UpgradeNitro(player, amount)
+    -- Die "NitroLevel" wird als Attribut gehalten
+    local oldValue = player:GetAttribute("NitroLevel") or 1
+    local newValue = oldValue + amount
+    player:SetAttribute("NitroLevel", newValue)
+
+    print("NitroLevel für", player.Name, "erhöht auf", newValue)
+
+    -- Falls du es auch im Leaderboard anzeigen willst, 
+    -- könntest du stattdessen in leaderstats.NitroLevel schreiben.
 end
 
 return CarUpgradeManager
