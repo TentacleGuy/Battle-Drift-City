@@ -4,7 +4,7 @@ local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local player = Players.LocalPlayer
-local sprintEvent = ReplicatedStorage:WaitForChild("SprintToggle")
+local sprintEvent = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("SprintToggle")
 
 -- SHIFT gedrückt
 UserInputService.InputBegan:Connect(function(input, gameProcessed)

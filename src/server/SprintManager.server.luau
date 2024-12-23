@@ -4,7 +4,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local sprintEvent = ReplicatedStorage:WaitForChild("SprintToggle")
+local sprintEvent = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("SprintToggle")
 
 -- Konfiguration
 local NORMAL_SPEED = 16
