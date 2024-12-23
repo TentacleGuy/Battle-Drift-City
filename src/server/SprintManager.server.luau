@@ -14,14 +14,7 @@ local STAMINA_DRAIN_RATE = 15  -- pro Sekunde
 local STAMINA_RECOVER_RATE = 5 -- pro Sekunde
 local DEFAULT_MAX_STAMINA = 100
 
--- Speichern wir Stamina & IsSprinting in Attributen am Spieler?
--- Dann kann man z. B. per "player:GetAttribute("Stamina")" dran.
--- Intern können wir auch ein Table anlegen:
 local playerData = {} 
--- playerData[player] = {
---     CurrentStamina = 100,
---     IsSprinting = false,
--- }
 
 -- Wenn PlayerAdded, initiiere Grundwerte
 Players.PlayerAdded:Connect(function(player)

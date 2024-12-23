@@ -1,5 +1,3 @@
--- ServerScriptService/Server/PlayerSpawnManager.lua
-
 local Players = game:GetService("Players")
 
 local PlayerDataHandler = require(script.Parent:WaitForChild("PlayerDataHandler"))
